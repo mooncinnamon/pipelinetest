@@ -1,14 +1,25 @@
 echo "---build start---"
 
-stage('Checkout Stage') {
-    echo "---Checkout---"
+stage('Pull') {
+    git 'https://github.com/mooncinnamon/pipelinetest.git'
 }
 
-stage('Build Stage') {
-    echo "---Build Stage---"
-        docker container ls
+stage('Unit Test') {
 }
 
-stage('Push Stage') {
-    echo "---Push Stage---"
+stage('Build') {
+    sh(script: 'docker-compose build app')
+}
+
+stage('Tag') {
+    sh(script: '''docker tag shutle_app docker.cinna.dev/shutle:${BUILD_NUMBER}''')
+    }
+
+stage('Push') {
+    sh(script: 'docker push docker.cinna.dev/shutle:${BUILD_NUMBER}')
+    sh(script: 'docker push docker.cinna.dev/shutle:latest')
+}
+
+stage('Deploy') {
+    sh(script: 'docker-compose up -d production')
 }
