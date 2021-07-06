@@ -5,7 +5,7 @@ services:
     build: .
     image: docker.cinna.dev/shutle
   production:
-    imgae: docker.cinna.dev/shutle:${BUILD_NUMBER}
+    image: docker.cinna.dev/shutle:${BUILD_NUMBER}
     command: python app.py
     volumes:
       - .:/code
