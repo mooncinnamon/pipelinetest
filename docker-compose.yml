@@ -8,6 +8,6 @@ services:
     image: docker.cinna.dev/shutle:${BUILD_NUMBER}
     command: python app.py
     volumes:
-      - .:/code
+      - /volume1/docker/pipelinetest:/code
     ports:
       - "5551:5551"
