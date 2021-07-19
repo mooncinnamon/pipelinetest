@@ -10,4 +10,4 @@ services:
     volumes:
       - /volume1/docker/pipelinetest:/code
     ports:
-      - "5551:5551"
+      - "5551:5000"
